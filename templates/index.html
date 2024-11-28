@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Controle Remoto Samsung</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+        <style>
+        .btn-custom {
+            width: 100px;
+            height: 100px;
+            font-size: 48px;
+        }
+    </style>
+</head>
+<body class="text-center">
+
+<h1>Controle Remoto Samsung</h1>
+
+<!-- Botões direcionais -->
+<div class="d-inline-block text-center my-4">
+    <button class="btn btn-primary btn-lg" onclick="sendCommand('KEY_UP')">↑</button><br>
+    <button class="btn btn-primary btn-lg" onclick="sendCommand('KEY_LEFT')">←</button>
+    <button class="btn btn-primary btn-lg" onclick="sendCommand('KEY_ENTER')">Enter</button>
+    <button class="btn btn-primary btn-lg" onclick="sendCommand('KEY_RIGHT')">→</button><br>
+    <button class="btn btn-primary btn-lg" onclick="sendCommand('KEY_DOWN')">↓</button>
+</div>
+
+<!-- Botões de volume -->
+<div class="d-inline-block text-center my-4">
+    <button class="btn btn-primary btn-lg" onclick="sendCommand('KEY_VOLUP')">VOL +</button><br>
+    <button class="btn btn-primary btn-lg" onclick="sendCommand('KEY_VOLDOWN')">VOL -</button>
+</div>
+
+<!-- Outros botões -->
+<div class="my-4">
+    <button class="btn btn-primary btn-lg" onclick="sendCommand('KEY_MENU')">Menu</button>
+    <button class="btn btn-primary btn-lg" onclick="sendCommand('KEY_RETURN')">Voltar</button>
+    <button class="btn btn-primary btn-lg" onclick="sendCommand('KEY_CONTENTS')">Smart Hub</button>
+</div>
+
+<script>
+async function sendCommand(command) {
+    const response = await fetch('/send_command', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: `command=${command}`
+    });
+    const result = await response.text();
+    console.log(result);
+}
+</script>
+
+</body>
+</html>

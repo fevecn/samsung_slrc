@@ -1,0 +1,8 @@
+name: "samsung_legacy_controller"
+description: "PC"
+id: "admin"
+host: "192.168.0.107"  # Replace for your TV local address
+port: 55000
+method: "legacy"
+timeout: 0
+
